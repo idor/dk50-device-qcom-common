@@ -575,6 +575,14 @@ service dhcpcd_bnep4 /system/bin/dhcpcd -BKLG
     disabled
     oneshot
 
+service dhcpcd_eth0 /system/bin/dhcpcd -ABKL
+    disabled
+    oneshot
+
+service iprenew_eth0 /system/bin/dhcpcd -n
+    disabled
+    oneshot
+
 service gpsone_daemon /system/bin/gpsone_daemon
     class late_start
     user gps
@@ -643,6 +651,32 @@ on property:drmdiag.load=1
 
 on property:drmdiag.load=0
     stop drmdiag
+
+on property:sys.eth.deauth=true
+    write /sys/devices/platform/msm_smsc_hub/msm_hsic_host/usb1/1-1/1-1.2/1-1.2.1/authorized 0
+    #deauthorize usb1
+    write /sys/devices/platform/msm_smsc_hub/msm_hsic_host/usb1/1-1/1-1.2/1-1.2.2/power/level auto
+    write /sys/devices/platform/msm_smsc_hub/msm_hsic_host/usb1/1-1/1-1.2/1-1.2.2/authorized 0
+    #deauthorize usb2
+    write /sys/devices/platform/msm_smsc_hub/msm_hsic_host/usb1/1-1/1-1.2/1-1.2.3/power/level auto
+    write /sys/devices/platform/msm_smsc_hub/msm_hsic_host/usb1/1-1/1-1.2/1-1.2.3/authorized 0
+    #deauthorize usb3
+    write /sys/devices/platform/msm_smsc_hub/msm_hsic_host/usb1/1-1/1-1.2/1-1.2.5/power/level auto
+    write /sys/devices/platform/msm_smsc_hub/msm_hsic_host/usb1/1-1/1-1.2/1-1.2.5/authorized 0
+    #deauthorize usb4
+    write /sys/devices/platform/msm_smsc_hub/msm_hsic_host/usb1/1-1/1-1.2/1-1.2.4/power/level auto
+    write /sys/devices/platform/msm_smsc_hub/msm_hsic_host/usb1/1-1/1-1.2/1-1.2.4/authorized 0
+
+on property:sys.eth.deauth=false
+    write /sys/devices/platform/msm_smsc_hub/msm_hsic_host/usb1/1-1/1-1.2/1-1.2.1/authorized 1
+    #deauthorize usb1
+    write /sys/devices/platform/msm_smsc_hub/msm_hsic_host/usb1/1-1/1-1.2/1-1.2.2/authorized 1
+    #deauthorize usb2
+    write /sys/devices/platform/msm_smsc_hub/msm_hsic_host/usb1/1-1/1-1.2/1-1.2.3/authorized 1
+    #deauthorize usb3
+    write /sys/devices/platform/msm_smsc_hub/msm_hsic_host/usb1/1-1/1-1.2/1-1.2.5/authorized 1
+    #deauthorize usb4
+    write /sys/devices/platform/msm_smsc_hub/msm_hsic_host/usb1/1-1/1-1.2/1-1.2.4/authorized 1
 
 service qcom-sh /system/bin/sh /init.qcom.sh
     class late_start
