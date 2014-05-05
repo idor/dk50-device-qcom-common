@@ -49,7 +49,7 @@ fi
 wlanchip=""
 
 if [ "$deviceprop" == "apq" ] && [ "$boardprop" == "msm8974" ]; then
-    wlanchip="AR6004-USB"
+    wlanchip="AR6004-SDIO"
 fi
 
 # force ar6004 is ar6004_wlan.conf existed.
