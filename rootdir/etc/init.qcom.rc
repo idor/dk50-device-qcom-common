@@ -853,3 +853,5 @@ on property:persist.sys.rootagent=1
     start rootagent
 on property:persist.sys.rootagent=0
     stop rootagent
+on property:init.svc.sensors=running
+   insmod /system/lib/modules/atmel_mxt_ts.ko
