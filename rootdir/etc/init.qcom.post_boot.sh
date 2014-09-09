@@ -278,6 +278,11 @@ case "$target" in
         else
             soc_id=`cat /sys/devices/system/soc/soc0/id`
         fi
+        if [ -f /sys/bus/i2c/devices/1-0020/buildid ];then
+               echo "TRULY" > /dev/block/platform/msm_sdcc.1/by-name/fsg
+        else
+               echo "SHARP" > /dev/block/platform/msm_sdcc.1/by-name/fsg
+        fi
         case "$soc_id" in
             "208" | "211" | "214" | "217" | "209" | "212" | "215" | "218" | "194" | "210" | "213" | "216")
                 for devfreq_gov in /sys/class/devfreq/qcom,cpubw*/governor
