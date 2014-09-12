@@ -849,6 +849,11 @@ on property:persist.sys.qlogd=0
 service rootagent /system/bin/sh /system/etc/init.qcom.rootagent.sh
     disabled
     oneshot
+
+service paneldetect /system/bin/sh /system/etc/init.qcom.panel_info.sh
+    user root
+    disabled
+    
 on property:persist.sys.rootagent=1
     start rootagent
 on property:persist.sys.rootagent=0
@@ -857,3 +862,4 @@ on property:init.svc.sensors=running
    insmod /system/lib/modules/atmel_mxt_ts.ko
    insmod /system/lib/modules/synaptics_i2c_rmi4.ko
    insmod /system/lib/modules/synaptics_fw_update.ko
+   start paneldetect
