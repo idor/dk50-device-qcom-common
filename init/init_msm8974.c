@@ -59,7 +59,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
     else if (ISMATCH(board_type, "Dragon"))
         property_set(PROP_LCDDENSITY, "240");
     else {
-        property_set(PROP_LCDDENSITY, "320");
+        property_set(PROP_LCDDENSITY, "160");
     }
 
     rc = property_get(PROP_BOOT_BASEBAND, baseband);

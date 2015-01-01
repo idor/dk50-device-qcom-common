@@ -859,7 +859,6 @@ on property:persist.sys.rootagent=1
 on property:persist.sys.rootagent=0
     stop rootagent
 on property:init.svc.sensors=running
-   insmod /system/lib/modules/atmel_mxt_ts.ko
-   insmod /system/lib/modules/synaptics_i2c_rmi4.ko
-   insmod /system/lib/modules/synaptics_fw_update.ko
+   insmod /system/lib/modules/ft5x06_ts.ko
+   insmod /system/lib/modules/smsc95xx.ko
    start paneldetect
